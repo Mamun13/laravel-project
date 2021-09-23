@@ -20,7 +20,7 @@ Route::get('/', 'PageController@index')->name('home');
 
 Route::get('/admin/dashboard', 'PageController@dashboard')->name('admin.dashboard');
 
-Route::get('/admin/main', 'PageController@main')->name('admin.main');
+Route::get('/admin/main', 'MainPagesController@index')->name('admin.main');
 
 Route::get('/admin/services', 'PageController@services')->name('admin.services');
 
