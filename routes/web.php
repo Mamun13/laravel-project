@@ -30,7 +30,7 @@ Route::get('/admin/about', 'PageController@about')->name('admin.about');
 
 Route::get('/admin/contact', 'PageController@contact')->name('admin.contact');
 
-
+Route::put('/admin/main', 'MainPagesController@update')->name('admin.main.update');
 
 
 
