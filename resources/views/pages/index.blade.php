@@ -42,7 +42,7 @@
         <div class="container">
             <div class="masthead-subheading">{{$main->sub_title}}</div>
             <div class="masthead-heading text-uppercase">{{$main->title}}</div>
-            <a class="btn btn-primary btn-xl text-uppercase" href="{{url('$main->resume')}}">Resume</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{{ URL::to('/') }}{{$main->resume}}" target="_blank">Resume</a>
         </div>
     </header>
     <!-- Services-->

@@ -13,11 +13,11 @@
                         <div class="form-group col-md-4 mt-3">
                             <div>
                                 <label for="icon"><h4>Font Awesome</h4></label>
-                                <input type="text" class="form-control" id="title" name="title">
+                                <input type="text" class="form-control" id="icon" name="icon">
                             </div>
                             <div class="mt-3"> 
                                 <label for="title"><h4>Title</h4></label>
-                                <input type="text" class="form-control" id="sub_title" name="title">
+                                <input type="text" class="form-control" id="title" name="title">
                             </div>
                             <div class="mt-3"> 
                                 <label for="description"><h4>Description</h4></label>

@@ -37,15 +37,24 @@ class MainPagesController extends Controller
         $main->sub_title = $request->sub_title;
 
         if($request->file('bc_img')){
+            
             $img_file = $request->file('bc_img');
-            $img_file->storeAs('public/img/','bc_img'. $img_file->getClientOriginalExtension());
-            $main->bc_img = 'Storage/img/bc_img' .  $img_file->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $name = time() . '.' . $img_file->getClientOriginalExtension();
+            $img_file->move($destinationPath, $name); 
+            $main->bc_img = '/images/' .  $name;
+            // $img_file->storeAs('public/img/','bc_img'. $img_file->getClientOriginalExtension());
+            // $main->bc_img = 'Storage/img/bc_img' .  $img_file->getClientOriginalExtension();
         }
 
         if($request->file('resume')){
             $pdf_file = $request->file('resume');
-            $pdf_file->storeAs('public/pdf/','resume'. $pdf_file->getClientOriginalExtension());
-            $main->resume = 'Storage/pdf/resume' .  $pdf_file->getClientOriginalExtension();
+            $destinationPath = public_path('/resume');
+            $name = time() . '.' . $pdf_file->getClientOriginalExtension();
+            $pdf_file->move($destinationPath, $name);
+            $main->resume = '/resume/' .  $name;
+            // $pdf_file->storeAs('public/pdf/','resume'. $pdf_file->getClientOriginalExtension());
+            // $main->resume = 'Storage/pdf/resume' .  $pdf_file->getClientOriginalExtension();
         }
 
         $main->save();

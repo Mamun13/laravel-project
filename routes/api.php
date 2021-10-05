@@ -2,7 +2,7 @@
 
 
 use Illuminate\Http\Request;
-use App\Route;
+// use App\Route;
 
 /*
 |--------------------------------------------------------------------------
