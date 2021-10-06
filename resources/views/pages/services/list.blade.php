@@ -10,10 +10,10 @@
                     <table class="table">
             <thead>
                 <tr>
-                <th scope="col">id</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Id</th>
+                <th scope="col">Icon</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +23,7 @@
                             <th scope="row">{{$key +1}}</th>
                             <td>{{$service->icon}}</td>
                             <td>{{$service->title}}</td>
-                            <td>{{$service->description}}</td>
+                            <td>{!!Str::limit(strip_tags($service->description),25)!!}</td>
                         </tr>
                     @endforeach
                 @endif
