@@ -14,6 +14,7 @@
                 <th scope="col">Icon</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
+                <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,20 @@
                             <td>{{$service->icon}}</td>
                             <td>{{$service->title}}</td>
                             <td>{!!Str::limit(strip_tags($service->description),25)!!}</td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <a href="{{route('admin.services.edit', $service->id)}}" class="btn btn-primary">Edit</a>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <form action="{{route('admin.services.destroy', $service->id)}}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <input type="submit" name="submit" class="btn btn-danger mt-10" value="Delete">
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 @endif

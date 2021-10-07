@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\service;
 
-
 class ServicePagesController extends Controller
 {
     /**
@@ -72,7 +71,8 @@ class ServicePagesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $services= service::find($id);
+        return view('pages.services.edit', compact('services'));
     }
 
     /**
@@ -84,7 +84,20 @@ class ServicePagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $this->validate($request, [
+            'icon'=>'required|string',
+            'title'=>'required|string',
+            'description'=>'required|string',
+        ]);
+
+        $services= service::find($id);
+        $services->icon = $request->icon;
+        $services->title = $request->title;
+        $services->description = $request->description;
+
+        $services->save();
+
+        return redirect()->route('admin.services.list')->with('success','Service updated Successfully');
     }
 
     /**
@@ -95,6 +108,9 @@ class ServicePagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $services= service::find($id);
+        $services->delete();
+
+        return redirect()->route('admin.services.list')->with('success','Service deleted  Successfully'); 
     }
 }
