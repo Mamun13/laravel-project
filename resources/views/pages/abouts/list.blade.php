@@ -11,39 +11,31 @@
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Sub_Title</th>
-                    <th scope="col">Big_img</th>
-                    <th scope="col">Small_img</th>
+                    <th scope="col">Title1</th>
+                    <th scope="col">Title2</th>
+                    <th scope="col">image</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Client</th>
-                    <th scope="col">Category</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @if (count($portfolios) > 0)
-                    @foreach ($portfolios as $key => $portfolio)
+                @if (count($abouts) > 0)
+                    @foreach ($abouts as $key => $about)
                         <tr>
                             <th scope="row">{{$key +1}}</th>
-                            <td>{{$portfolio->title}}</td>
-                            <td>{{$portfolio->sub_title}}</td>
+                            <td>{{$about->title1}}</td>
+                            <td>{{$about->title2}}</td>
                             <td>
-                                <img style="height: 10vh" src="{{url($portfolio->big_img)}}" alt="big_img">
+                                <img style="height: 10vh" src="{{url($about->image)}}" alt="image">
                             </td>
-                            <td>
-                                <img style="height: 10vh" src="{{url($portfolio->small_img)}}" alt="big_img">
-                            </td>
-                            <td>{!!Str::limit(strip_tags($portfolio->description),25)!!}</td>
-                            <td>{{$portfolio->client}}</td>
-                            <td>{{$portfolio->category}}</td>
+                            <td>{!!Str::limit(strip_tags($about->description),25)!!}</td>
                             <td>
                                 <div class="row">
                                     <div class="col-lg-2">
-                                        <a href="{{route('admin.portfolios.edit', $portfolio->id)}}" class="btn btn-primary">Edit</a>
+                                        <a href="{{route('admin.abouts.edit', $about->id)}}" class="btn btn-primary">Edit</a>
                                     </div>
                                     <div class="col-lg-2">
-                                        <form action="{{route('admin.portfolios.destroy', $portfolio->id)}}" method="POST">
+                                        <form action="{{route('admin.abouts.destroy', $about->id)}}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <input type="submit" name="submit" class="btn btn-danger " value="Delete">

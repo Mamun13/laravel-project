@@ -43,8 +43,6 @@ class MainPagesController extends Controller
             $name = time() . '.' . $img_file->getClientOriginalExtension();
             $img_file->move($destinationPath, $name); 
             $main->bc_img = '/images/' .  $name;
-            // $img_file->storeAs('public/img/','bc_img'. $img_file->getClientOriginalExtension());
-            // $main->bc_img = 'Storage/img/bc_img' .  $img_file->getClientOriginalExtension();
         }
 
         if($request->file('resume')){

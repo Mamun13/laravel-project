@@ -69,7 +69,7 @@
                                 </nav>
                             </div>
                         </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Portfolio
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -81,9 +81,17 @@
                                 </nav>
                             </div>
                         </a>
-                        <a class="nav-link" href="{{route('admin.about')}}">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts3">
                             <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                            About
+                                About
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts3" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{route('admin.abouts.create')}}">Create</a>
+                                    <a class="nav-link" href="{{route('admin.abouts.list')}}">List</a>
+                                </nav>
+                            </div>
                         </a>
                         <a class="nav-link" href="{{route('admin.contact')}}">
                             <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>

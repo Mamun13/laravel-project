@@ -15,8 +15,8 @@ class PortfolioPagesController extends Controller
      */
     public function list()
     {
-        // $services = service::all();
-        // return view('pages.services.list',compact('services'));
+         $portfolios = portfolio::all();
+         return view('pages.portfolios.list',compact('portfolios'));
     }
 
     /**
@@ -49,7 +49,6 @@ class PortfolioPagesController extends Controller
 
          $portfolios= new Portfolio();
          $portfolios->title = $request->title;
-         $portfolios->sub_title = $request->sub_title;
          $portfolios->sub_title = $request->sub_title;
          $portfolios->description = $request->description;
          $portfolios->client = $request->client;
@@ -88,8 +87,8 @@ class PortfolioPagesController extends Controller
      */
     public function edit($id)
     {
-        // $services= service::find($id);
-        // return view('pages.services.edit', compact('services'));
+         $portfolio= portfolio::find($id);
+         return view('pages.portfolios.edit', compact('portfolio'));
     }
 
     /**
@@ -101,20 +100,39 @@ class PortfolioPagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //  $this->validate($request, [
-        //     'icon'=>'required|string',
-        //     'title'=>'required|string',
-        //     'description'=>'required|string',
-        // ]);
+         $this->validate($request, [
+             'title'=>'required|string',
+             'sub_title'=>'required|string',
+            //  'big_img'=>'required|image',
+            //  'small_img'=>'required|image',
+             'description'=>'required|string',
+             'client'=>'required|string',
+             'category'=>'required|string',
+         ]);
 
-        // $services= service::find($id);
-        // $services->icon = $request->icon;
-        // $services->title = $request->title;
-        // $services->description = $request->description;
+         $portfolios= Portfolio::find($id);
+         $portfolios->title = $request->title;
+         $portfolios->sub_title = $request->sub_title;
+         $portfolios->description = $request->description;
+         $portfolios->client = $request->client;
+         $portfolios->category = $request->category;
 
-        // $services->save();
+         if($request->file('big_img')){
+            $big_img=$request->file('big_img');
+            Storage::putfile('public/img/',$big_img);
+            $portfolios->big_img="storage/img/".$big_img->hashName();
+         }
 
-        // return redirect()->route('admin.services.list')->with('success','Service updated Successfully');
+         if($request->file('small_img')){
+            $small_img=$request->file('small_img');
+            Storage::putfile('public/img/',$small_img);
+            $portfolios->small_img="storage/img/".$small_img->hashName();
+         }
+        
+
+         $portfolios->save();
+
+         return redirect()->route('admin.portfolios.list')->with('success','Portfolio updated Successfully');
     }
 
     /**
@@ -125,9 +143,11 @@ class PortfolioPagesController extends Controller
      */
     public function destroy($id)
     {
-        // $services= service::find($id);
-        // $services->delete();
+        $portfolio= portfolio::find($id);
+        @unlink(public_path($portfolio->big_img));
+        @unlink(public_path($portfolio->small_img));
+        $portfolio->delete();
 
-        // return redirect()->route('admin.services.list')->with('success','Service deleted  Successfully'); 
+        return redirect()->route('admin.portfolios.list')->with('success','Service deleted  Successfully'); 
     }
 }

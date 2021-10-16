@@ -9,6 +9,7 @@
                 </ol>
                  <form action="{{route('admin.portfolios.store')}}" method="POST" enctype="multipart/form-data"> 
                     @csrf
+                    {{@method_field('PUT')}}
                     <div class="row">
                         <div class="form-group col-md-3 mt-3">
                             <h2>Big image</h2>
@@ -39,10 +40,10 @@
                             </div>
                         </div>
                             <div class="form-group col-md-6 mt-3">
-                                    <h2>Description</h2>
-                                    <textarea name="description" class="form-control" id="description" cols="30" rows="5"></textarea>
-                                </div>
+                                <h2>Description</h2>
+                                <textarea name="description" class="form-control" id="description" cols="30" rows="5"></textarea>
                             </div>
+                    </div>
                     <input type="submit" name="submit" class="btn btn-primary mt-3">
                 </form>
         </div>

@@ -2,28 +2,46 @@
 @section('content')
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Create</h1>
+            <h1 class="mt-4">Edit</h1>
                  <ol class="breadcrumb mb-4">
                      <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                     <li class="breadcrumb-item active">Create</li>
+                     <li class="breadcrumb-item active">Edit</li>
                 </ol>
-                 <form action="{{route('admin.services.update',$services->id)}}" method="POST" enctype="multipart/form-data"> 
+                 <form action="{{route('admin.portfolios.update', $portfolio->id)}}" method="POST" enctype="multipart/form-data"> 
                     @csrf
                     <div class="row">
+                        <div class="form-group col-md-3 mt-3">
+                            <h2>Big image</h2>
+                            <img style="height: 30vh" src="{{asset('$portfolio/big_img')}}" class="img-thumbnail">
+                            <input type="file" class="mt-3" name="big_img">
+                        </div>
+                        <div class="form-group col-md-3 mt-3">
+                            <h2>Small image</h2>
+                            <img style="height: 20vh" src="{{url($portfolio->small_img)}}" class="img-thumbnail">
+                            <input type="file" class="mt-3" name="small_img">
+                        </div>
                         <div class="form-group col-md-4 mt-3">
                             <div>
-                                <label for="icon"><h4>Font Awesome</h4></label>
-                                <input type="text" class="form-control" id="icon" name="icon" value="{{$services->icon}}">
-                            </div>
-                            <div class="mt-3"> 
                                 <label for="title"><h4>Title</h4></label>
-                                <input type="text" class="form-control" id="title" name="title" value="{{$services->title}}">
+                                <input type="text" class="form-control" id="title" name="title" value="{{$portfolio->title}}">
                             </div>
                             <div class="mt-3"> 
-                                <label for="description"><h4>Description</h4></label>
-                                <textarea  type="text" class="form-control" id="description" name="description">{{$services->description}}</textarea>
+                                <label for="sub_title"><h4>Sub_Title</h4></label>
+                                <input type="text" class="form-control" id="sub_title" name="sub_title" value="{{$portfolio->sub_title}}">
+                            </div>
+                            <div>
+                                <label for="client"><h4>Client</h4></label>
+                                <input type="text" class="form-control" id="client" name="client" value="{{$portfolio->client}}">
+                            </div>
+                            <div class="mt-3"> 
+                                <label for="category"><h4>Category</h4></label>
+                                <input type="text" class="form-control" id="category" name="category" value="{{$portfolio->category}}">
                             </div>
                         </div>
+                            <div class="form-group col-md-6 mt-3">
+                                <h2>Description</h2>
+                                <textarea name="description" class="form-control" id="description" cols="30" rows="5">{{$portfolio->description}}</textarea>
+                            </div>
                     </div>
                     <input type="submit" name="submit" class="btn btn-primary mt-3">
                 </form>
